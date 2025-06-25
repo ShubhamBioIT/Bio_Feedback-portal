@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bioinformatics Feedback Study</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Fonts for modern look -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1565c0;
+            --primary-dark: #0d47a1;
+            --accent: #00bcd4; /* Changed from green to cyan/light blue */
+            --bg-gradient: linear-gradient(120deg, #e3f2fd 0%, #f9fbfc 100%);
+            --shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+            --radius: 18px;
+            --transition: 0.3s cubic-bezier(.4,2,.6,1);
+            --glass: rgba(255,255,255,0.85);
+            --border: 1.5px solid #e3f2fd;
+            --highlight: #e0f7fa; /* Lighter cyan highlight */
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            background: var(--bg-gradient);
+            color: #222;
+            min-height: 100vh;
+            overflow-x: hidden;
+            letter-spacing: 0.01em;
+        }
+
+        .container {
+            max-width: 980px;
+            margin: 3rem auto;
+            padding: 2.7rem 2.2rem 2.2rem 2.2rem;
+            background: var(--glass);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow), 0 0 0 1.5px #e3f2fd;
+            animation: fadeIn 0.7s cubic-bezier(.4,2,.6,1);
+            position: relative;
+            border: var(--border);
+            backdrop-filter: blur(2.5px);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+
+        .page {
+            display: none;
+            animation: pageFade 0.5s;
+        }
+        .page.active {
+            display: block;
+            animation: pageFade 0.5s;
+        }
+        @keyframes pageFade {
+            from { opacity: 0; transform: scale(0.98);}
+            to { opacity: 1; transform: scale(1);}
+        }
+
+        h2 {
+            color: var(--primary-dark);
+            margin-top: 0;
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: 0.02em;
+            text-shadow: 0 2px 12px #e3f2fd;
+            margin-bottom: 0.7em;
+            border-left: 7px solid var(--primary);
+            padding-left: 18px;
+            background: linear-gradient(90deg, #e3f2fd 60%, #fff 100%);
+            border-radius: 7px;
+        }
+
+        ul {
+            padding-left: 1.3em;
+            margin-bottom: 1.5em;
+        }
+        ul li {
+            margin-bottom: 0.7em;
+            font-size: 1.13em;
+            position: relative;
+            padding-left: 1.2em;
+            transition: color var(--transition);
+            line-height: 1.7;
+        }
+        ul li::before {
+            content: "✔";
+            color: var(--accent);
+            position: absolute;
+            left: 0;
+            font-size: 1em;
+            top: 0.1em;
+            opacity: 0.7;
+        }
+        ul li strong {
+            color: var(--primary);
+        }
+        ul li:hover {
+            color: var(--accent);
+            background: var(--highlight);
+            border-radius: 4px;
+        }
+
+        .link-box {
+            margin: 20px 0;
+            padding: 20px 22px;
+            background: linear-gradient(90deg, #e3f2fd 80%, #e0f7fa 100%);
+            border-left: 7px solid var(--primary);
+            border-radius: 10px;
+            font-size: 1.13em;
+            box-shadow: 0 2px 12px rgba(21,101,192,0.06);
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            transition: box-shadow var(--transition), border-color var(--transition), background 0.3s;
+            font-family: 'Roboto', Arial, sans-serif;
+        }
+        .link-box:hover {
+            box-shadow: 0 4px 24px rgba(21,101,192,0.13);
+            border-left-color: var(--accent);
+            background: linear-gradient(90deg, #e3f2fd 60%, #b2ebf2 100%);
+        }
+        .link-box a {
+            color: var(--primary-dark);
+            background: #e3f2fd;
+            padding: 7px 18px;
+            border-radius: 6px;
+            font-weight: 700;
+            transition: background var(--transition), color var(--transition), box-shadow 0.2s;
+            box-shadow: 0 1px 4px rgba(21,101,192,0.07);
+            border: 1.5px solid #b3e5fc;
+            font-size: 1.05em;
+            letter-spacing: 0.01em;
+        }
+        .link-box a:hover {
+            background: var(--primary);
+            color: #fff;
+            text-decoration: underline;
+            box-shadow: 0 2px 12px rgba(21,101,192,0.13);
+            border-color: var(--accent);
+        }
+
+        button {
+            padding: 14px 36px;
+            margin: 28px 14px 0 0;
+            background: linear-gradient(90deg, var(--primary-dark) 80%, var(--primary) 100%);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.13em;
+            font-family: inherit;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(21,101,192,0.09);
+            transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+            outline: none;
+            position: relative;
+            z-index: 1;
+            letter-spacing: 0.01em;
+        }
+        button:hover, button:focus {
+            background: linear-gradient(90deg, var(--primary) 80%, var(--accent) 100%);
+            transform: translateY(-2px) scale(1.04);
+            box-shadow: 0 8px 24px rgba(21,101,192,0.15);
+        }
+        button:active {
+            background: var(--accent);
+            color: #fff;
+            transform: scale(0.98);
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color var(--transition);
+        }
+        a:focus {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            width: 100%;
+            background: #e3f2fd;
+            border-radius: 8px;
+            height: 14px;
+            margin-bottom: 2.2rem;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(21,101,192,0.07);
+            border: 1.5px solid #b3e5fc;
+        }
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-dark), var(--primary), var(--accent));
+            width: 0;
+            border-radius: 8px;
+            transition: width 0.6s cubic-bezier(.4,2,.6,1);
+            box-shadow: 0 2px 12px rgba(21,101,192,0.09);
+        }
+
+        /* Step Indicator */
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            gap: 0.5rem;
+            background: #f5fafd;
+            border-radius: 8px;
+            padding: 12px 10px;
+            box-shadow: 0 1px 6px rgba(21,101,192,0.05);
+        }
+        .step {
+            flex: 1;
+            text-align: center;
+            font-size: 1.07em;
+            color: #888;
+            font-weight: 500;
+            position: relative;
+            z-index: 1;
+            letter-spacing: 0.01em;
+        }
+        .step.active {
+            color: var(--primary-dark);
+            font-weight: 800;
+            text-shadow: 0 2px 8px #e3f2fd;
+        }
+        .step::before {
+            content: '';
+            display: block;
+            margin: 0 auto 8px auto;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: #e3f2fd;
+            border: 2.5px solid #b3e5fc;
+            transition: background var(--transition), border-color var(--transition);
+            box-shadow: 0 1px 6px #e3f2fd;
+        }
+        .step.active::before {
+            background: var(--primary);
+            border-color: var(--accent);
+            box-shadow: 0 2px 8px #b3e5fc;
+        }
+
+        /* Thank You Box */
+        .thanks {
+            background: #b2ebf2;
+            padding: 32px 28px;
+            border-left: 7px solid var(--accent);
+            border-radius: 12px;
+            margin-top: 40px;
+            display: none;
+            animation: fadeIn 0.7s;
+            box-shadow: 0 2px 12px rgba(0,188,212,0.09);
+            font-family: 'Roboto', Arial, sans-serif;
+        }
+        .thanks h3 {
+            margin-top: 0;
+            color: var(--accent);
+            font-size: 1.6em;
+            font-weight: 800;
+            letter-spacing: 0.01em;
+        }
+        .thanks p {
+            font-size: 1.13em;
+            color: #222;
+        }
+
+        /* Subtle page transition */
+        .page {
+            transition: opacity 0.5s, transform 0.5s;
+        }
+
+        /* Decorative background shapes */
+        .decor {
+            position: absolute;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .decor.circle1 {
+            top: -60px; left: -60px;
+            width: 160px; height: 160px;
+            background: radial-gradient(circle, #b3e5fc 60%, transparent 100%);
+            border-radius: 50%;
+        }
+        .decor.circle2 {
+            bottom: -70px; right: -70px;
+            width: 180px; height: 180px;
+            background: radial-gradient(circle, #b2ebf2 60%, transparent 100%);
+            border-radius: 50%;
+        }
+        .decor.triangle {
+            top: 40px; right: -50px;
+            width: 0; height: 0;
+            border-left: 60px solid transparent;
+            border-right: 60px solid transparent;
+            border-bottom: 100px solid #e0f7fa;
+            opacity: 0.5;
+            transform: rotate(20deg);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 700px) {
+            .container {
+                padding: 1.2rem 0.5rem;
+                max-width: 98vw;
+            }
+            h2 {
+                font-size: 1.3em;
+                padding-left: 10px;
+            }
+            .link-box {
+                font-size: 1em;
+                padding: 12px 8px;
+                flex-direction: column;
+                gap: 8px;
+            }
+            button {
+                font-size: 1em;
+                padding: 10px 18px;
+                margin-top: 18px;
+            }
+            .thanks {
+                padding: 16px 8px;
+            }
+            .steps {
+                flex-direction: column;
+                gap: 8px;
+                padding: 8px 4px;
+            }
+            .decor.circle1, .decor.circle2, .decor.triangle {
+                display: none;
+            }
+        }
+    </style>
+    <script>
+        // Progress bar and step indicator logic
+        document.addEventListener('DOMContentLoaded', function() {
+            updateProgress();
+            // Listen for navigation
+            document.querySelectorAll('button[onclick^="goToNext"],button[onclick^="goToPrevious"]').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    setTimeout(updateProgress, 100);
+                });
+            });
+        });
+
+        function updateProgress() {
+            const steps = ['page1','page2','page3','page4'];
+            let activeIdx = steps.findIndex(id => document.getElementById(id).classList.contains('active'));
+            // Progress bar
+            const progress = document.querySelector('.progress');
+            if (progress) {
+                progress.style.width = ((activeIdx+1)/steps.length*100) + '%';
+            }
+            // Step indicator
+            document.querySelectorAll('.step').forEach((el, idx) => {
+                el.classList.toggle('active', idx === activeIdx);
+            });
+        }
+    </script>
+</head>
+<body>
+<div class="decor circle1"></div>
+<div class="decor circle2"></div>
+<div class="decor triangle"></div>
+<div class="container">
+  <div class="progress-bar">
+    <div class="progress"></div>
+  </div>
+  <div class="steps">
+    <div class="step">Pre-Test</div>
+    <div class="step">Simulation</div>
+    <div class="step">Post-Test</div>
+    <div class="step">Feedback</div>
+  </div>
+  <div class="page active" id="page1">
+    <h2>Welcome to the Bioinformatics Feedback Study</h2>
+    <p style="font-size:1.13em; margin-bottom:1.2em;">
+      This study evaluates the effectiveness of simulation tools in teaching complex bioinformatics algorithms. Please follow each step carefully to ensure a complete evaluation process.
+    </p>
+    <ul>
+      <li><strong>Step 1:</strong> Pre-Test</li>
+      <li><strong>Step 2:</strong> Use the Simulation Tools</li>
+      <li><strong>Step 3:</strong> Post-Test</li>
+      <li><strong>Step 4:</strong> Final Feedback</li>
+    </ul>
+    <div class="link-box">
+      📋 <strong>Pre-Test Form:</strong> <a href="https://forms.gle/oYHraWgQezpwnBwGA" target="_blank">Click to Fill Pre-Test</a>
+    </div>
+    <button onclick="goToNext('page1','page2')">Next ➝</button>
+  </div>
+
+  <div class="page" id="page2">
+    <h2>Step 2: Use the Simulation Tools</h2>
+    <p style="font-size:1.13em; margin-bottom:1.2em;">
+      Click and explore each of the tools listed below. Interact with simulations to deepen your understanding.
+    </p>
+    <div class="link-box">🔬 <strong>Zuker Algorithm:</strong> <a href="https://virtual-labs.github.io/exp-zuker-rna-au/simulation.html" target="_blank">Open Tool</a></div>
+    <div class="link-box">🔬 <strong>De Bruijn Graph:</strong> <a href="https://virtual-labs.github.io/exp-debruijn-graph-au/simulation.html" target="_blank">Open Tool</a></div>
+    <button onclick="goToPrevious('page2','page1')">⬅ Previous</button>
+    <button onclick="goToNext('page2','page3')">Next ➝</button>
+  </div>
+
+  <div class="page" id="page3">
+    <h2>Step 3: Post-Test</h2>
+    <p style="font-size:1.13em; margin-bottom:1.2em;">
+      Now answer the same set of questions again to reflect on what you've learned.
+    </p>
+    <div class="link-box">
+      🧠 <strong>Post-Test Form:</strong> <a href="https://forms.gle/yn1g9uRbaR8Cr2id6" target="_blank">Click to Fill Post-Test</a>
+    </div>
+    <button onclick="goToPrevious('page3','page2')">⬅ Previous</button>
+    <button onclick="goToNext('page3','page4')">Next ➝</button>
+  </div>
+
+  <div class="page" id="page4">
+    <h2>Step 4: Final Feedback</h2>
+    <p style="font-size:1.13em; margin-bottom:1.2em;">
+      Your feedback is crucial for improving the learning experience. Please take a moment to reflect and respond.
+    </p>
+    <div class="link-box">
+      ✍️ <strong>Feedback Form:</strong> <a href="https://forms.gle/W3QNmCvCc9wtYSp67" target="_blank" onclick="showThankYou()">Click to Give Feedback</a>
+    </div>
+    <button onclick="goToPrevious('page4','page3')">⬅ Previous</button>
+    <div class="thanks" id="thankyou">
+      <h3>🎉 Thank You!</h3>
+      <p>We appreciate your valuable time and thoughtful responses. Your input will help us build better educational tools for the future!</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  function goToNext(current, next) {
+    document.getElementById(current).classList.remove('active');
+    document.getElementById(next).classList.add('active');
+  }
+
+  function goToPrevious(current, previous) {
+    document.getElementById(current).classList.remove('active');
+    document.getElementById(previous).classList.add('active');
+  }
+
+  function showThankYou() {
+    setTimeout(() => {
+      document.getElementById('thankyou').style.display = 'block';
+    }, 1000);
+  }
+</script>
+</body>
+</html>
