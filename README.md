@@ -11,7 +11,6 @@ This is a multi-page web-based simulation portal designed for a research study o
   4. Final Feedback
 - Clean, responsive design using HTML, CSS, and JavaScript
 - Controlled navigation (Next & Previous)
-- Auto-reveal thank-you message on final step
 
 ## 🚀 How to Use
 
