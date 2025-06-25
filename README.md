@@ -37,5 +37,3 @@ This is a multi-page web-based simulation portal designed for a research study o
 This project is developed for educational and research purposes only.
 
 ---
-
-Feel free to fork, adapt, or contribute for academic use!
