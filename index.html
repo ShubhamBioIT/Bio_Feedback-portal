@@ -376,87 +376,118 @@
 <div class="decor circle2"></div>
 <div class="decor triangle"></div>
 <div class="container">
-  <div class="progress-bar">
-    <div class="progress"></div>
-  </div>
-  <div class="steps">
-    <div class="step">Pre-Test</div>
-    <div class="step">Simulation</div>
-    <div class="step">Post-Test</div>
-    <div class="step">Feedback</div>
-  </div>
-  <div class="page active" id="page1">
-    <h2>Welcome to the Bioinformatics Feedback Study</h2>
-    <p style="font-size:1.13em; margin-bottom:1.2em;">
-      This study evaluates the effectiveness of simulation tools in teaching complex bioinformatics algorithms. Please follow each step carefully to ensure a complete evaluation process.
-    </p>
-    <ul>
-      <li><strong>Step 1:</strong> Pre-Test</li>
-      <li><strong>Step 2:</strong> Use the Simulation Tools</li>
-      <li><strong>Step 3:</strong> Post-Test</li>
-      <li><strong>Step 4:</strong> Final Feedback</li>
-    </ul>
-    <div class="link-box">
-      📋 <strong>Pre-Test Form:</strong> <a href="https://forms.gle/oYHraWgQezpwnBwGA" target="_blank">Click to Fill Pre-Test</a>
+    <div class="progress-bar">
+        <div class="progress"></div>
     </div>
-    <button onclick="goToNext('page1','page2')">Next ➝</button>
-  </div>
+    <div class="steps">
+        <div class="step">Pre-Test</div>
+        <div class="step">Simulation</div>
+        <div class="step">Post-Test</div>
+        <div class="step">Feedback</div>
+    </div>
+    <div class="page active" id="page1">
+        <h2>Welcome to the Bioinformatics Feedback Study</h2>
+        <p style="font-size:1.13em; margin-bottom:1.2em;">
+            This study evaluates the effectiveness of simulation tools in teaching complex bioinformatics algorithms. Please follow each step carefully to ensure a complete evaluation process.
+        </p>
+        <ul>
+            <li><strong>Step 1:</strong> Pre-Test</li>
+            <li><strong>Step 2:</strong> Use the Simulation Tools</li>
+            <li><strong>Step 3:</strong> Post-Test</li>
+            <li><strong>Step 4:</strong> Final Feedback</li>
+        </ul>
+        <div class="link-box">
+            📋 <strong>Pre-Test Form:</strong> <a href="https://forms.gle/oYHraWgQezpwnBwGA" target="_blank" id="pretest-link">Click to Fill Pre-Test</a>
+        </div>
+        <button id="next1" onclick="goToNext('page1','page2')" style="display:none;">Next ➝</button>
+    </div>
 
-  <div class="page" id="page2">
-    <h2>Step 2: Use the Simulation Tools</h2>
-    <p style="font-size:1.13em; margin-bottom:1.2em;">
-      Click and explore each of the tools listed below. Interact with simulations to deepen your understanding.
-    </p>
-    <div class="link-box">🔬 <strong>Zuker Algorithm:</strong> <a href="https://virtual-labs.github.io/exp-zuker-rna-au/simulation.html" target="_blank">Open Tool</a></div>
-    <div class="link-box">🔬 <strong>De Bruijn Graph:</strong> <a href="https://virtual-labs.github.io/exp-debruijn-graph-au/simulation.html" target="_blank">Open Tool</a></div>
-    <button onclick="goToPrevious('page2','page1')">⬅ Previous</button>
-    <button onclick="goToNext('page2','page3')">Next ➝</button>
-  </div>
+    <div class="page" id="page2">
+        <h2>Step 2: Use the Simulation Tools</h2>
+        <p style="font-size:1.13em; margin-bottom:1.2em;">
+            Click and explore each of the tools listed below. Interact with the simulations to deepen your understanding.<br>
+            <span style="color:#1565c0; font-weight:600;">The "Next" button will appear once you have opened both tools. Thank you!</span>
+        </p>
+        <div class="link-box">🔬 <strong>Zuker Algorithm:</strong> <a href="https://virtual-labs.github.io/exp-zuker-rna-au/simulation.html" target="_blank" id="tool-link1">Open Tool</a></div>
+        <div class="link-box">🔬 <strong>De Bruijn Graph:</strong> <a href="https://virtual-labs.github.io/exp-debruijn-graph-au/simulation.html" target="_blank" id="tool-link2">Open Tool</a></div>
+        <button onclick="goToPrevious('page2','page1')">⬅ Previous</button>
+        <button id="next2" onclick="goToNext('page2','page3')" style="display:none;">Next ➝</button>
+    </div>
 
-  <div class="page" id="page3">
-    <h2>Step 3: Post-Test</h2>
-    <p style="font-size:1.13em; margin-bottom:1.2em;">
-      Now answer the same set of questions again to reflect on what you've learned.
-    </p>
-    <div class="link-box">
-      🧠 <strong>Post-Test Form:</strong> <a href="https://forms.gle/yn1g9uRbaR8Cr2id6" target="_blank">Click to Fill Post-Test</a>
+    <div class="page" id="page3">
+        <h2>Step 3: Post-Test</h2>
+        <p style="font-size:1.13em; margin-bottom:1.2em;">
+            Now answer the same set of questions again to reflect on what you've learned.
+        </p>
+        <div class="link-box">
+            🧠 <strong>Post-Test Form:</strong> <a href="https://forms.gle/yn1g9uRbaR8Cr2id6" target="_blank" id="posttest-link">Click to Fill Post-Test</a>
+        </div>
+        <button onclick="goToPrevious('page3','page2')">⬅ Previous</button>
+        <button id="next3" onclick="goToNext('page3','page4')" style="display:none;">Next ➝</button>
     </div>
-    <button onclick="goToPrevious('page3','page2')">⬅ Previous</button>
-    <button onclick="goToNext('page3','page4')">Next ➝</button>
-  </div>
 
-  <div class="page" id="page4">
-    <h2>Step 4: Final Feedback</h2>
-    <p style="font-size:1.13em; margin-bottom:1.2em;">
-      Your feedback is crucial for improving the learning experience. Please take a moment to reflect and respond.
-    </p>
-    <div class="link-box">
-      ✍️ <strong>Feedback Form:</strong> <a href="https://forms.gle/W3QNmCvCc9wtYSp67" target="_blank" onclick="showThankYou()">Click to Give Feedback</a>
+    <div class="page" id="page4">
+        <h2>Step 4: Final Feedback</h2>
+        <p style="font-size:1.13em; margin-bottom:1.2em;">
+            Your feedback is crucial for improving the learning experience. Please take a moment to reflect and respond.
+        </p>
+        <div class="link-box">
+            ✍️ <strong>Feedback Form:</strong> <a href="https://forms.gle/W3QNmCvCc9wtYSp67" target="_blank" id="feedback-link" onclick="showThankYou()">Click to Give Feedback</a>
+        </div>
+        <button onclick="goToPrevious('page4','page3')">⬅ Previous</button>
+        <div class="thanks" id="thankyou">
+            <h3>🎉 Thank You!</h3>
+            <p>We appreciate your valuable time and thoughtful responses. Your input will help us build better educational tools for the future!</p>
+        </div>
     </div>
-    <button onclick="goToPrevious('page4','page3')">⬅ Previous</button>
-    <div class="thanks" id="thankyou">
-      <h3>🎉 Thank You!</h3>
-      <p>We appreciate your valuable time and thoughtful responses. Your input will help us build better educational tools for the future!</p>
-    </div>
-  </div>
 </div>
 
 <script>
-  function goToNext(current, next) {
-    document.getElementById(current).classList.remove('active');
-    document.getElementById(next).classList.add('active');
-  }
+    function goToNext(current, next) {
+        document.getElementById(current).classList.remove('active');
+        document.getElementById(next).classList.add('active');
+    }
 
-  function goToPrevious(current, previous) {
-    document.getElementById(current).classList.remove('active');
-    document.getElementById(previous).classList.add('active');
-  }
+    function goToPrevious(current, previous) {
+        document.getElementById(current).classList.remove('active');
+        document.getElementById(previous).classList.add('active');
+    }
 
-  function showThankYou() {
-    setTimeout(() => {
-      document.getElementById('thankyou').style.display = 'block';
-    }, 1000);
-  }
+    function showThankYou() {
+        setTimeout(() => {
+            document.getElementById('thankyou').style.display = 'block';
+        }, 1000);
+    }
+
+    // Show Next button after clicking Pre-Test link
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('pretest-link').addEventListener('click', function() {
+            document.getElementById('next1').style.display = 'inline-block';
+        });
+
+        // For simulation tools: show Next only after both links have been clicked
+        let tool1Clicked = false;
+        let tool2Clicked = false;
+        function checkToolsClicked() {
+            if (tool1Clicked && tool2Clicked) {
+                document.getElementById('next2').style.display = 'inline-block';
+            }
+        }
+        document.getElementById('tool-link1').addEventListener('click', function() {
+            tool1Clicked = true;
+            checkToolsClicked();
+        });
+        document.getElementById('tool-link2').addEventListener('click', function() {
+            tool2Clicked = true;
+            checkToolsClicked();
+        });
+
+        // Show Next button after clicking Post-Test link
+        document.getElementById('posttest-link').addEventListener('click', function() {
+            document.getElementById('next3').style.display = 'inline-block';
+        });
+        // Optionally, you can show thank you after feedback link is clicked (already handled)
+    });
 </script>
 </body>
 </html>
