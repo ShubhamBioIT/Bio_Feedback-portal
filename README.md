@@ -16,7 +16,7 @@ This is a multi-page web-based simulation portal designed for a research study o
 ## 🚀 How to Use
 
 1. Visit the deployed link:  
-   [[https://your-username.github.io/biofeedback-portal](https://shubhambioit.github.io/Bio_Feedback-portal/)]
+   [[https://shubhambioit.github.io/biofeedback-portal](https://shubhambioit.github.io/Bio_Feedback-portal/)]
 
 2. Complete the pre-test → explore tools → take the post-test → submit feedback.
 
